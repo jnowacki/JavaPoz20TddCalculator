@@ -6,9 +6,13 @@ import static org.junit.Assert.*;
 
 public class CalculatorImplTest {
 
+    private static CalculatorImpl calculator;
+
     @BeforeClass
     public static void setUp() {
         System.out.println("BeforeClass");
+
+        calculator = new CalculatorImpl();
     }
 
     @AfterClass
@@ -19,6 +23,7 @@ public class CalculatorImplTest {
     @After
     public void tearDownAfterMethod() {
         System.out.println("After");
+        calculator.clear();
     }
 
     @Before
@@ -28,9 +33,6 @@ public class CalculatorImplTest {
 
     @Test
     public void shouldDisplayValuesOfMultipleNumbersPressed() {
-        //given
-        CalculatorImpl calculator = new CalculatorImpl();
-
         //when
         calculator.pressNumber(5);
         calculator.pressNumber(3);
@@ -43,13 +45,40 @@ public class CalculatorImplTest {
     @Test
     public void shouldClearDisplay() {
         //given
-        CalculatorImpl calculator = new CalculatorImpl();
-
-        //when
         calculator.pressNumber(5);
         assertEquals("5", calculator.display());
+
+        //when
         calculator.clear();
 
+        //then
         assertTrue(calculator.display().isEmpty());
+    }
+
+    @Test
+    public void shouldAddTwoNumbers() {
+
+        //given
+        int numberA = 1;
+        int numberB = 2;
+
+        //when
+        calculator.add(numberA, numberB);
+
+        //then
+        assertEquals("3", calculator.display());
+    }
+
+    @Test
+    public void shouldAddTwoNumbersTwoAndThree() {
+        //given
+        int numberA = 2;
+        int numberB = 3;
+
+        //when
+        calculator.add(numberA, numberB);
+
+        //then
+        assertEquals("5", calculator.display());
     }
 }

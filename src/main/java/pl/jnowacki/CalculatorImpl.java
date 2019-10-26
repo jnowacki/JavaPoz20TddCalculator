@@ -17,7 +17,8 @@ public class CalculatorImpl implements Calculator {
 
     @Override
     public void add(int numberA, int numberB) {
-
+        int result = numberA + numberB;
+        display = String.valueOf(result);
     }
 
     @Override
