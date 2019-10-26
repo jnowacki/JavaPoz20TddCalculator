@@ -1,6 +1,7 @@
 package pl.jnowacki;
 
 import org.junit.*;
+import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.*;
 
@@ -27,7 +28,7 @@ public class CalculatorImplTest {
     }
 
     @Before
-    public void setUpBeforeMethod(){
+    public void setUpBeforeMethod() {
         System.out.println("Before");
     }
 
@@ -105,5 +106,33 @@ public class CalculatorImplTest {
 
         calculator.sub(a, b);
         assertEquals(String.valueOf(result), calculator.display());
+    }
+
+    @Test
+    public void shouldThrowExceptionWhenDividedBy0v1() {
+        try {
+            calculator.div(4, 0);
+            fail();
+        } catch (Exception e) {
+            assertEquals(e.getMessage(), "Nie dziel przez zero");
+            assertTrue(e instanceof IllegalArgumentException);
+        }
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionWhenDividedBy0v2() {
+        calculator.div(4, 0);
+    }
+
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+
+
+    @Test
+    public void shouldThrowExceptionWhenDividedBy0v3() {
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage("Nie dziel przez zero");
+
+        calculator.div(4, 0);
     }
 }

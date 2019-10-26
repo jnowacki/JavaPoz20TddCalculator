@@ -29,7 +29,12 @@ public class CalculatorImpl implements Calculator {
 
     @Override
     public void div(int numberA, int numberB) throws IllegalArgumentException {
+        if(numberB == 0) {
+            throw new IllegalArgumentException("Nie dziel przez zero");
+        }
 
+        clear();
+        pressNumber(numberA/numberB);
     }
 
     @Override
