@@ -23,7 +23,8 @@ public class CalculatorImpl implements Calculator {
 
     @Override
     public void sub(int numberA, int numberB) {
-
+        int result = numberA - numberB;
+        display = String.valueOf(result);
     }
 
     @Override

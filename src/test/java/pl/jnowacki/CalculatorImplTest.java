@@ -81,4 +81,29 @@ public class CalculatorImplTest {
         //then
         assertEquals("5", calculator.display());
     }
+
+    @Test
+    public void shouldSubtractTwoNumbersTwoAndThree() {
+        //given
+        int numberA = 5;
+        int numberB = 3;
+
+        //when
+        calculator.sub(numberA, numberB);
+
+        //then
+        assertEquals("2", calculator.display());
+    }
+
+    @Test
+    public void testMultipleNumberSets() {
+        testSub(1, 4, -3);
+        testSub(5, 3, 2);
+    }
+
+    private void testSub(int a, int b, int result) {
+
+        calculator.sub(a, b);
+        assertEquals(String.valueOf(result), calculator.display());
+    }
 }
