@@ -2,6 +2,7 @@ package pl.jnowacki;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -14,10 +15,15 @@ public class MockitoTest {
     @Mock
     private PeopleRepository peopleRepository;
 
+    @InjectMocks
+    private PeopleService peopleService;
+
     @Test
     public void testMock() {
         when(peopleRepository.findOne()).thenReturn(new Person(23));
 
-        assertEquals(peopleRepository.findOne().getAge(), 23);
+        Person person = peopleService.getOnePerson();
+
+        assertEquals(person.getAge(), 23);
     }
 }
