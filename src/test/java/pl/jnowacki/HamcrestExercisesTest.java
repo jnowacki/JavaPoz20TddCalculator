@@ -10,6 +10,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static pl.jnowacki.NumberWrapper.returnsRightNumber;
+import static pl.jnowacki.ThreeLetterItemCountListMatcher.has3LetterCountItems;
 
 public class HamcrestExercisesTest {
 
@@ -73,9 +74,9 @@ public class HamcrestExercisesTest {
     }
 
     @Test
-    public void shouldReturnRightNumber() {
-        NumberWrapper wrapper = new NumberWrapper();
+    public void testIfHasOnly3LetterItems() {
+        List<String> listUnderTest = Arrays.asList("one", "two");
 
-        assertThat(wrapper, returnsRightNumber(is(15)));
+        assertThat(listUnderTest, has3LetterCountItems());
     }
 }
