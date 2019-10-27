@@ -9,6 +9,7 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static pl.jnowacki.NumberWrapper.returnsRightNumber;
 
 public class HamcrestExercisesTest {
 
@@ -69,5 +70,12 @@ public class HamcrestExercisesTest {
                 return actual.charAt(0);
             }
         };
+    }
+
+    @Test
+    public void shouldReturnRightNumber() {
+        NumberWrapper wrapper = new NumberWrapper();
+
+        assertThat(wrapper, returnsRightNumber(is(15)));
     }
 }
