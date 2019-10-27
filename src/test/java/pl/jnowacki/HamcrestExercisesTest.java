@@ -9,8 +9,8 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static pl.jnowacki.NumberWrapper.returnsRightNumber;
-import static pl.jnowacki.ThreeLetterItemCountListMatcher.has3LetterCountItems;
+import static pl.jnowacki.GivenLetterItemCountListMatcher.hasGivenLetterCountItems;
+import static pl.jnowacki.PersonSchoolAgeMatcher.isEligibleToSchool;
 
 public class HamcrestExercisesTest {
 
@@ -77,6 +77,25 @@ public class HamcrestExercisesTest {
     public void testIfHasOnly3LetterItems() {
         List<String> listUnderTest = Arrays.asList("one", "two");
 
-        assertThat(listUnderTest, has3LetterCountItems());
+        assertThat(listUnderTest, hasGivenLetterCountItems(3));
+    }
+
+    @Test
+    public void testIfHasOnly4LetterItems() {
+        List<String> listUnderTest = Arrays.asList("onea", "twoa");
+
+        assertThat(listUnderTest, hasGivenLetterCountItems(4));
+    }
+
+    @Test
+    public void testPersonAge() {
+
+        Person person1 = new Person(0);
+        Person person2 = new Person(6);
+        Person person3 = new Person(12);
+
+        assertThat(person1, not(isEligibleToSchool()));
+        assertThat(person2, not(isEligibleToSchool()));
+        assertThat(person3, isEligibleToSchool());
     }
 }
